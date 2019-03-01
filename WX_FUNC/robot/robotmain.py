@@ -45,15 +45,16 @@ def switch(req_dict):
 
     # 随机机器人提供服务
     # i = random.randint(1, 3)
-    # if i == 1:
-    #     rsp_dict = talktotuling.totuling(req_dict)
+    i = 1
+    if i == 1:
+        rsp_dict = talktotuling.totuling(req_dict)
     # elif i == 2:
     #     rsp_dict = talktoqingyunke.toqingyunke(req_dict)
     # elif i == 3:
     #     rsp_dict = talktoxiaoai.toxiaoai(req_dict)
 
     # 20181224 改为本地机器人识别
-    rsp_dict = talktolocalrobot.localrobot(req_dict)
+    # rsp_dict = talktolocalrobot.localrobot(req_dict)
 
     rsp_dict['ToUserName'] = req_dict.get('FromUserName')
     rsp_dict['FromUserName'] = req_dict.get('ToUserName')
