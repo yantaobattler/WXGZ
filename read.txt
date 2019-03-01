@@ -1,0 +1,41 @@
+pip install C:\Python34\mysqlclient-1.3.12-cp34-cp34m-win32.whl
+# mysql 建库
+mysql -u root -p
+CREATE DATABASE IF NOT EXISTS wxdb  DEFAULT CHARSET utf8;
+CREATE USER IF NOT EXISTS 'wxdb' IDENTIFIED BY 'wxdb' PASSWORD EXPIRE NEVER;
+GRANT ALL ON wxdb.* TO 'wxdb';
+flush privileges;
+
+# 修改settings里databases
+'ENGINE': 'django.db.backends.mysql',
+'NAME': 'wxdb',
+'USER': 'wxdb',
+'PASSWORD': 'wxdb',
+'HOST': '127.0.0.1',
+'PORT': '3306',
+
+# cmd
+python manage.py startapp app_user
+
+# 修改settings里INSTALLED_APPS
+'app_user',
+
+# 修改settings里ALLOWED_HOSTS,之后自己验证中间件
+ALLOWED_HOSTS = ['*',]
+
+# 修改settings里这个变量自己写，引号里的路径是工程里的static目录名
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# app里建立models,再执行cmd
+python manage.py makemigrations
+python manage.py migrate
+
+# 测试nginx配置
+nginx -t
+/etc/init.d/nginx restart
+/etc/init.d/nginx reload
+
+# 启动uwsgi
+uwsgi --ini /home/yant/WXGZ/uwsgi.ini
