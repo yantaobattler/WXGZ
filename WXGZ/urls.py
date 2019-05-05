@@ -26,4 +26,7 @@ urlpatterns = [
     # WEB_FUNC
     url(r'^WEB_FUNC/', include('WEB_FUNC.urls')),
 
+    # other
+
+
 ]

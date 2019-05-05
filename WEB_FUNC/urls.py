@@ -19,4 +19,7 @@ from WEB_FUNC import views
 
 urlpatterns = [
     # url(r'^suggest/', views.suggest),
+
+    # other
+    url(r'^mandybirthday/2019/', views.mandybirthday),
 ]
