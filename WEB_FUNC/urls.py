@@ -21,5 +21,6 @@ urlpatterns = [
     # url(r'^suggest/', views.suggest),
 
     # other
-    url(r'^mandybirthday/2019/', views.mandybirthday),
+    # url(r'^mandybirthday/2019/', views.mandybirthday),
+    # url(r'^2019/520', views.love2019520),
 ]

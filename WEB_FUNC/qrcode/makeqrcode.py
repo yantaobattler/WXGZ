@@ -7,8 +7,8 @@ qr = qrcode.QRCode(
     box_size=10,
     border=4,
 )
-qr.add_data('http://39.107.236.31/WEB_FUNC/mandybirthday/2019/')
+qr.add_data('http://39.107.236.31/WEB_FUNC/2019/520')
 qr.make(fit=True)
 
 img = qr.make_image(fill_color="black", back_color="white")
-img.save('E:/123.png')
+img.save('E:/520.png')
