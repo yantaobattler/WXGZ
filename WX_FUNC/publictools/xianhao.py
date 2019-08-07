@@ -14,9 +14,6 @@ def excute():
 
 # 开始拆
 
-    # 因为这个网站天津的限号规则不更新了，天津的规则=北京，所以改取北京的规则
-    beijing_txt = ''
-
     # 其他城市
     for i in range(3, 10):
         temp3 = soup.find_all("div", class_="mcon")[i]
@@ -28,27 +25,28 @@ def excute():
         for j in temp4:
             txt = txt + j.text + '\n'
 
-        if city == '北京':
-            beijing_txt = txt
-
         txt = txt + temp3.find("div", class_="f14").text
 
         rsp_dict[city] = txt
 
-    # 主城，大概可能是按照ip搞得
+    # 主城，大概可能是按照ip搞得,服务器是北京，本地跑是天津
     temp1 = soup.find_all("div", class_="mcon")[0]
     city = temp1.find("h2", class_="f16").text[:-6]
     temp2 = temp1.find_all("td", width="25%")
 
-    # 因为这个网站天津的限号规则不更新了，天津的规则=北京，所以改取北京的规则
-    # txt = ''
-    # for i in temp2:
-    #     txt = txt + i.text + '\n'
-    txt = beijing_txt
+    txt = ''
+    for i in temp2:
+        txt = txt + i.text + '\n'
 
     txt = txt + temp1.find("div", class_="f14").text
-
     rsp_dict[city] = txt
+
+    # 因为这个网站天津的限号规则不更新了，天津的规则=北京，所以改取北京的规则
+    beijing_rsp = rsp_dict['北京']
+    tianjin_rsp = rsp_dict['天津']
+    tail = tianjin_rsp.split('\n')[4]
+    tianjin_rsp = '\n'.join(beijing_rsp.split('\n')[0:4]) + '\n' + tail
+    rsp_dict['天津'] = tianjin_rsp
 
     return rsp_dict
 

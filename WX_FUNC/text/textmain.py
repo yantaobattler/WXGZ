@@ -72,6 +72,6 @@ def switch(req_dict):
 
 
 if __name__ == '__main__':
-    req_dict = {'FromUserName': 'FromUserName', 'Content': 'ssq18003'}
+    req_dict = {'FromUserName': 'FromUserName', 'Content': '限号天津'}
     print(switch(req_dict))
 
